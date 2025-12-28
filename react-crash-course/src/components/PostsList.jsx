@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import Post from './Post.jsx';
-import styles from './PostsList.module.css';
+import Modal from './Modal.jsx';
 import NewPost from './NewPost.jsx';
+import styles from './PostsList.module.css';
 
-function PostsList() {
+function PostsList({ modalIsVisible, handleHideModal }) {
   const [enteredBody, setEnteredBody] = useState('Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora odit id nobis officiis expedita ipsam quae esse.');
   const [enteredAuthor, setEnteredAuthor] = useState('Samuel');
 
@@ -14,8 +15,15 @@ function PostsList() {
   function handleAuthorChange(event) {
     setEnteredAuthor(event.target.value);
   }
+
+
   return <>
-    <NewPost onBodyChange={handleBodyChange} onAuthorChange={handleAuthorChange} />
+    {
+      modalIsVisible && <Modal onClose={handleHideModal}>
+        <NewPost onBodyChange={handleBodyChange} onAuthorChange={handleAuthorChange} />
+      </Modal>
+    }
+
     <ul className={styles.posts}>
       <Post author={enteredAuthor} body={enteredBody} />
       <Post author="Maria" body="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora odit id nobis officiis expedita ipsam quae esse." />
@@ -30,5 +38,7 @@ function PostsList() {
     </ul>
   </>;
 }
+
+
 
 export default PostsList;
