@@ -7,9 +7,16 @@
     display: grid;
     gap: 1em;
     grid-auto-rows: 1fr;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 300px));
     /* justify-self: center; */
     justify-content: center;
     align-content: center;
     place-items: center;
+}
+
+.noPosts {
+    text-align: center;
+    color: white;
+    font-size: 1.25rem;
+    margin-top: 2rem;
 }
